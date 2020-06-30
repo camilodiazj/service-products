@@ -1,7 +1,7 @@
 package com.springboot.app.productos.models.service;
 
 import com.springboot.app.productos.models.dao.ProductoDao;
-import com.springboot.app.productos.models.entity.Producto;
+import com.springboot.app.commons.models.entity.Producto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,5 +26,17 @@ public class ProductServiceImpl implements IProductoService {
     @Transactional(readOnly = true)
     public Producto findById(Long id) {
         return productoDao.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public Producto save(Producto producto) {
+        return productoDao.save(producto);
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        productoDao.deleteById(id);
     }
 }
